@@ -1,0 +1,26 @@
+.hangman-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.9rem; /* Smaller base font size */
+  background-color: #f5f5f5; /* Optional: light background */
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem; /* Adds spacing between child elements */
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}

@@ -1,0 +1,8 @@
+.keyboard-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px; /* combines column and row gaps */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0.5rem;
+}

@@ -1,0 +1,12 @@
+.man {
+    fill: none;               /* clearer than transparent for SVG */
+    stroke: #000000;          /* pure black stroke */
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;   /* smooth joins for connected lines */
+    vector-effect: non-scaling-stroke; /* keeps stroke consistent on resize */
+}
+
+.hide {
+    display: none !important; /* guaranteed to hide element */
+}

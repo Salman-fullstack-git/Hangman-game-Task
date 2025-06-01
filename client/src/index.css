@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 13px; /* Smaller base font size */
+  line-height: 1.5;
+  background-color: #fafafa; /* Optional: soft background */
+  color: #222; /* Slightly lighter than black for smoother reading */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 12px; /* Smaller monospace font size */
+  background-color: #f0f0f0; /* Optional: light background for code blocks */
+  padding: 2px 4px;
+  border-radius: 4px;
+}
