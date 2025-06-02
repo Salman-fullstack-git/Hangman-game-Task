@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-// const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args)); // Works in Node < 18
 const crypto = require('crypto');
 const sessions = {};
 
@@ -30,7 +29,7 @@ app.get('/api/word', (req, res) => {
   }
   const randomIndex = Math.floor(Math.random() * wordList.length);
   const word = wordList[randomIndex];
-  const sessionId = crypto.randomUUID(); // Generate unique session ID
+  const sessionId = crypto.randomUUID();
 
   sessions[sessionId] = {
     word: word.toLowerCase(),
