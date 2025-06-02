@@ -14,7 +14,7 @@ let wordList = [];
 
 const loadWordList = async () => {
   try {
-    const response = await fetch("https://random-word-api.herokuapp.com/all");
+    const response = await fetch("https://random-word-api.herokuapp.com/word?number=42");
     if (!response.ok) {throw new Error("Failed to fetch word list");}
     wordList = await response.json();
     console.log(`✅ Loaded ${wordList.length} words`);
