@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const crypto = require('crypto');
-const sessions = {};
+// const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args)); // Works in Node < 18
 
 const app = express();
 const PORT = 5000;
@@ -24,35 +23,18 @@ const loadWordList = async () => {
 };
 
 app.get('/api/word', (req, res) => {
-  if (wordList.length===0) {
-    return res.status(500).json({ error: "Word list not loaded yet" });
-  }
+  if (wordList.length===0) {return res.status(500).json({ error: "Word list not loaded yet" });}
   const randomIndex = Math.floor(Math.random() * wordList.length);
   const word = wordList[randomIndex];
-  const sessionId = crypto.randomUUID();
-
-  sessions[sessionId] = {
-    word: word.toLowerCase(),
-    guessedWord: new Set(),
-    wrongGuesses: 0,
-    wrongLetters: []
-  };
-  res.json({ sessionId, word });
+  res.json({ word });
 });
 
 app.post('/api/guess', (req, res) => {
-  const {sessionId, letter } = req.body;
+  const { word, guessedWord, wrongGuesses, wrongLetters, letter } = req.body;
 
-  if (!sessionId || !letter) {
-    return res.status(400).json({ error: "Missing sessionId or letter." });
+  if (!word || !letter) {
+    return res.status(400).json({ error: "Missing word or letter in request body." });
   }
-
-  const game = sessions[sessionId];
-  if (!game) {
-    return res.status(404).json({ error: "Session not found." });
-  }
-
-  const { word, guessedWord, wrongGuesses, wrongLetters } = game;
 
   const lowerWord = word.toLowerCase();
   const lowerLetter = letter.toLowerCase();
@@ -73,10 +55,6 @@ app.post('/api/guess', (req, res) => {
 
   const isWinner = lowerWord.split('').every(char => updatedGuessedWord.has(char));
   const isGameOver = newWrongGuesses >= MAX_WRONG;
-
-  game.wrongGuesses = newWrongGuesses;
-  game.guessedWord = updatedGuessedWord;
-  game.wrongLetters = updatedWrongLetters;
 
   res.json({
     guessedWord: Array.from(updatedGuessedWord),
